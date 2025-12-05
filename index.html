@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scott Blaszak</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            padding: 4rem 0 1rem;
+        }
+        
+        header h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #00ff88 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #888;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        nav {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #1a1a1a;
+            margin-bottom: 3rem;
+        }
+        
+        nav a {
+            color: #888;
+            text-decoration: none;
+            margin-right: 3rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: #00ff88;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00ff88, #00d4ff);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        section {
+            padding: 2rem 0 4rem;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        
+        section:last-of-type {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+        
+        .about-content {
+            max-width: 900px;
+        }
+        
+        .about-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #b0b0b0;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-content a {
+            color: #00ff88;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .about-content a:hover {
+            color: #00d4ff;
+        }
+        
+        .book-cta {
+            margin-top: 3rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+            border: 1px solid #00ff88;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+        
+        .book-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(0, 255, 136, 0.03) 10px,
+                rgba(0, 255, 136, 0.03) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+        
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .book-content {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+        
+        .book-cta h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+        
+        .book-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #b0b0b0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: transparent;
+            color: #00ff88;
+            border: 2px solid #00ff88;
+            text-decoration: none;
+            font-size: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #00ff88;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .cta-button:hover {
+            color: #0a0a0a;
+        }
+        
+        .cta-button:hover::before {
+            left: 0;
+        }
+        
+        .contact-info {
+            max-width: 800px;
+        }
+        
+        .contact-item {
+            margin-bottom: 2.5rem;
+        }
+        
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .contact-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: #00ff88;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-details {
+            font-size: 1.5rem;
+            color: #b0b0b0;
+            line-height: 1.8;
+        }
+        
+        .contact-details a {
+            color: #00ff88;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-details a:hover {
+            color: #00d4ff;
+        }
+        
+        /* Scan line effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 136, 0.03) 0px,
+                rgba(0, 255, 136, 0) 2px,
+                rgba(0, 255, 136, 0) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            nav a {
+                display: block;
+                margin: 1rem 0;
+            }
+            
+            .about-content p {
+                font-size: 1.1rem;
+            }
+            
+            .book-cta {
+                flex-direction: column;
+                padding: 2rem 1.5rem;
+            }
+            
+            .book-cta h3 {
+                font-size: 2rem;
+            }
+            
+            .contact-details {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Scott Blaszak</h1>
+            <p class="tagline">Screenwriter and Author</p>
+        </header>
+        
+        <nav>
+            <a href="disruptification.html">Disruptification</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        
+        <section id="about">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <p>I'm a produced screenwriter and author currently developing a project with 21 Laps Entertainment (Stranger Things, Arrival, Free Guy). Based in Philadelphia, I specialize in thrillers, sci-fi, comedy, and sports stories.</p>
+                
+                <p>My work has appeared in McSweeney's and on WNYC public radio, and I've met with production companies across the industry to discuss (why they usually decide not to produce) my scripts.</p>
+                
+                <p>Currently working on finishing up my first book, <a href="disruptification.html">DISRUPTIFICATION</a>.</p>
+                
+                <div class="book-cta">
+                    <div class="book-content">
+                        <h3>Disruptification</h3>
+                        <p>The epic rise, and even epic-er fall, but then even epic-er-er rise of a tech bro destined to save the world... from his own shitty inventions.</p>
+                        <a href="disruptification.html" class="cta-button">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-details">
+                        <a href="mailto:scott@compilerfilms.com">Email me</a> about just about anything.
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-label">Film/TV</div>
+                    <div class="contact-details">
+                        Sam Warren & Cooper McCary @ Untitled Entertainment
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
